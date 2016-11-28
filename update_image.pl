@@ -166,16 +166,19 @@ run_command("ecc --inject $scratch_dir/hostboot.temp.bin --output $scratch_dir/g
 #Create blank binary file for NVRAM Data (NVRAM) Partition
 run_command("dd if=/dev/zero bs=512K count=1 of=$scratch_dir/nvram.bin");
 
-#Create blank binary file for MVPD Partition
-run_command("dd if=/dev/zero bs=512K count=1 | tr \"\\000\" \"\\377\" > $scratch_dir/hostboot.temp.bin");
-run_command("ecc --inject $scratch_dir/hostboot.temp.bin --output $scratch_dir/mvpd_fill.bin.ecc --p8");
-
 #Create blank binary file for DJVPD Partition
-run_command("dd if=/dev/zero bs=256K count=1 | tr \"\\000\" \"\\377\" > $scratch_dir/hostboot.temp.bin");
+#run_command("dd if=/dev/zero bs=256K count=1 | tr \"\\000\" \"\\377\" > $scratch_dir/hostboot.temp.bin");
+run_command("dd if=/gsa/ausgsa/home/p/r/pragupta/public/witherspoon_bup_files/sysspd.dat of=$scratch_dir/hostboot.temp.bin ibs=256K conv=sync");
 run_command("ecc --inject $scratch_dir/hostboot.temp.bin --output $scratch_dir/djvpd_fill.bin.ecc --p8");
 
+#Create blank binary file for MVPD Partition
+#run_command("dd if=/dev/zero bs=512K count=1 | tr \"\\000\" \"\\377\" > $scratch_dir/hostboot.temp.bin");
+run_command("dd if=/gsa/ausgsa/home/p/r/pragupta/public/witherspoon_bup_files/sysmvpd.dat of=$scratch_dir/hostboot.temp.bin  ibs=576K conv=sync");
+run_command("ecc --inject $scratch_dir/hostboot.temp.bin --output $scratch_dir/mvpd_fill.bin.ecc --p8");
+
+
 #Add ECC Data to CVPD Data Partition
-run_command("dd if=$hb_binary_dir/cvpd.bin of=$scratch_dir/hostboot.temp.bin ibs=256K conv=sync");
+run_command("dd if=/gsa/ausgsa/home/p/r/pragupta/public/witherspoon_bup_files/sysmemvpd.dat of=$scratch_dir/hostboot.temp.bin ibs=192K conv=sync");
 run_command("ecc --inject $scratch_dir/hostboot.temp.bin --output $scratch_dir/cvpd.bin.ecc --p8");
 
 #Create blank binary file for ATTR_TMP Partition

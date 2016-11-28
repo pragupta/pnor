@@ -120,21 +120,21 @@ Layout Description
         <reprovision/>
     </section>
     <section>
-        <description>Module VPD (576K)</description>
+        <description>Module VPD (648K)</description>
         <eyeCatch>MVPD</eyeCatch>
         <!--NOTE: MUST update standalone.simics if offset changes -->
         <physicalOffset>0x229000</physicalOffset>
-        <physicalRegionSize>0x90000</physicalRegionSize>
+        <physicalRegionSize>0xA2000</physicalRegionSize>
         <side>A</side>
         <ecc/>
         <reprovision/>
     </section>
     <section>
-        <description>Centaur VPD (288K)</description>
+        <description>Centaur VPD (216K)</description>
         <eyeCatch>CVPD</eyeCatch>
         <!--NOTE: MUST update standalone.simics if offset changes -->
-        <physicalOffset>0x2B9000</physicalOffset>
-        <physicalRegionSize>0x48000</physicalRegionSize>
+        <physicalOffset>0x2CB000</physicalOffset>
+        <physicalRegionSize>0x36000</physicalRegionSize>
         <side>A</side>
         <ecc/>
         <reprovision/>
